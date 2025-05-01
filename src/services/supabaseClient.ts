@@ -3,12 +3,19 @@ import { createClient } from '@supabase/supabase-js';
 import { User } from '@/types';
 
 /**
+ * Default Supabase URL and anon key for development
+ * These are fallbacks to prevent errors when environment variables are missing
+ */
+const FALLBACK_SUPABASE_URL = 'https://your-supabase-project-url.supabase.co';
+const FALLBACK_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'; // Replace with actual public anon key
+
+/**
  * Create and export the Supabase client for use across the application
- * Uses environment variables for configuration
+ * Uses environment variables for configuration with fallbacks to prevent errors
  */
 export const supabaseClient = createClient(
-  import.meta.env.VITE_SUPABASE_URL || '',
-  import.meta.env.VITE_SUPABASE_ANON_KEY || ''
+  import.meta.env.VITE_SUPABASE_URL || FALLBACK_SUPABASE_URL,
+  import.meta.env.VITE_SUPABASE_ANON_KEY || FALLBACK_SUPABASE_ANON_KEY
 );
 
 /**
