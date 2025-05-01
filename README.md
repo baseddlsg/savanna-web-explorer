@@ -1,73 +1,53 @@
-# Welcome to your Lovable project
 
-## Project info
+# Savannah - Modern React Web Application
 
-**URL**: https://lovable.dev/projects/0b06f77c-159c-4a7a-af96-8cfa65859398
+A beautiful web application with a savanna-inspired design theme, built with modern web technologies.
 
-## How can I edit this code?
+## Technology Stack
 
-There are several ways of editing your application.
+- **Framework**: React with TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **State Management**: React Query
+- **Routing**: React Router v6
+- **UI Components**: shadcn/ui
 
-**Use Lovable**
+## Features
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/0b06f77c-159c-4a7a-af96-8cfa65859398) and start prompting.
+- Responsive layout that works on mobile and desktop
+- Dark mode support with class-based implementation
+- Clean directory structure following best practices
+- Placeholder routes for key application sections
+- Savanna-inspired color palette and theme
+- JSDoc-style comments on exported functions and components
 
-Changes made via Lovable will be committed automatically to this repo.
+## Directory Structure
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+src/
+├── components/     # UI primitives and layout blocks
+├── hooks/          # Reusable logic
+├── services/       # Supabase and external APIs
+├── types/          # Shared type definitions
+├── utils/          # General-purpose functions
+└── pages/          # Route-level components
 ```
 
-**Edit a file directly in GitHub**
+## Getting Started
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Start the development server: `npm run dev`
+4. Open http://localhost:8080 in your browser
 
-**Use GitHub Codespaces**
+## Documentation
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Component and function documentation is written using JSDoc-style comments throughout the codebase.
 
-## What technologies are used for this project?
+## Design Theme
 
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/0b06f77c-159c-4a7a-af96-8cfa65859398) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+The application uses a savanna-inspired color palette:
+- Primary: Warm amber
+- Secondary: Earth brown
+- Accent: Savanna green
+- Background variants for light and dark modes
