@@ -1,28 +1,106 @@
 
+import { createClient } from '@supabase/supabase-js';
+import { User } from '@/types';
+
 /**
- * Placeholder for Supabase client configuration
- * Replace with actual Supabase client initialization when ready
+ * Create and export the Supabase client for use across the application
+ * Uses environment variables for configuration
  */
-export const supabaseClient = {
-  auth: {
-    signIn: async ({ email, password }: { email: string; password: string }) => {
-      console.log("Sign in attempt", { email, password });
-      return { user: { id: "1", email }, session: {} };
-    },
-    signUp: async ({ email, password }: { email: string; password: string }) => {
-      console.log("Sign up attempt", { email, password });
-      return { user: { id: "1", email }, session: {} };
-    },
-    signOut: async () => {
-      console.log("Sign out attempt");
-      return { error: null };
-    },
+export const supabaseClient = createClient(
+  import.meta.env.VITE_SUPABASE_URL || '',
+  import.meta.env.VITE_SUPABASE_ANON_KEY || ''
+);
+
+/**
+ * Authentication services for Supabase
+ * Provides methods for user authentication and session management
+ */
+export const authService = {
+  /**
+   * Sign in a user with email and password
+   * @param email User's email
+   * @param password User's password
+   */
+  signInWithEmail: async (email: string, password: string) => {
+    return await supabaseClient.auth.signInWithPassword({ email, password });
+  },
+
+  /**
+   * Sign in a user with OAuth provider
+   * @param provider OAuth provider (google, discord, etc.)
+   */
+  signInWithOAuth: async (provider: 'google' | 'discord') => {
+    return await supabaseClient.auth.signInWithOAuth({
+      provider,
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+      },
+    });
+  },
+
+  /**
+   * Sign up a user with email, password, and optional user data
+   * @param email User's email
+   * @param password User's password
+   * @param userData Additional user data
+   */
+  signUpWithEmail: async (email: string, password: string, userData?: { username: string }) => {
+    return await supabaseClient.auth.signUp({
+      email,
+      password,
+      options: {
+        data: userData,
+        emailRedirectTo: `${window.location.origin}/auth/callback`,
+      },
+    });
+  },
+
+  /**
+   * Sign out the current user
+   */
+  signOut: async () => {
+    return await supabaseClient.auth.signOut();
+  },
+
+  /**
+   * Send a password reset email to the user
+   * @param email User's email
+   */
+  resetPassword: async (email: string) => {
+    return await supabaseClient.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/reset-password`,
+    });
+  },
+
+  /**
+   * Get the current session
+   */
+  getSession: async () => {
+    return await supabaseClient.auth.getSession();
+  },
+
+  /**
+   * Get the current user
+   */
+  getUser: async () => {
+    const { data } = await supabaseClient.auth.getUser();
+    return data?.user;
   },
 };
 
 /**
- * Comment: This is a placeholder service. To implement actual Supabase functionality:
- * 1. Add @supabase/supabase-js dependency
- * 2. Initialize the client with your Supabase URL and anon key
- * 3. Implement proper authentication and data methods
+ * Map Supabase user to our application User type
+ * @param supabaseUser User from Supabase
+ * @returns Application User
  */
+export const mapSupabaseUser = (supabaseUser: any): User | null => {
+  if (!supabaseUser) return null;
+  return {
+    id: supabaseUser.id,
+    email: supabaseUser.email,
+    firstName: supabaseUser.user_metadata?.firstName || '',
+    lastName: supabaseUser.user_metadata?.lastName || '',
+    avatarUrl: supabaseUser.user_metadata?.avatar_url || '',
+    username: supabaseUser.user_metadata?.username || '',
+  };
+};
