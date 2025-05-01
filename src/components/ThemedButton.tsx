@@ -63,6 +63,7 @@ const ThemedButton = React.forwardRef<
       className={cn(
         // Add custom styles based on variants
         variant === 'primary' && "shadow-md hover:shadow-lg hover:shadow-primary/20 transition-shadow",
+        variant === 'danger' && "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         fullWidth && "w-full",
         className
       )}
