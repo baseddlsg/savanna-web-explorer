@@ -17,6 +17,7 @@ interface PasswordInputProps {
   placeholder?: string;
   className?: string;
   required?: boolean;
+  disabled?: boolean; // Add disabled prop
 }
 
 /**
@@ -30,7 +31,8 @@ export const PasswordInput = ({
   label,
   placeholder = 'Enter password',
   className = '',
-  required = false
+  required = false,
+  disabled = false // Add disabled prop with default value
 }: PasswordInputProps) => {
   const [showPassword, setShowPassword] = useState(false);
   
@@ -62,6 +64,7 @@ export const PasswordInput = ({
           placeholder={placeholder}
           className={`pr-10 ${className}`}
           required={required}
+          disabled={disabled} // Pass disabled prop to Input
         />
         <Button
           type="button"
@@ -69,6 +72,7 @@ export const PasswordInput = ({
           size="icon"
           className="absolute right-0 top-0 h-full"
           onClick={togglePasswordVisibility}
+          disabled={disabled} // Disable button when input is disabled
         >
           {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
           <span className="sr-only">
