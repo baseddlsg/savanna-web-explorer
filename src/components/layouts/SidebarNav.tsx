@@ -6,8 +6,8 @@ import {
   LogIn,
   UserPlus,
   Layout,
-  Gallery,
-  Space,
+  Image,
+  Globe,
   User,
 } from "lucide-react";
 
@@ -47,12 +47,12 @@ const navItems: NavItem[] = [
   {
     title: "Gallery",
     href: "/gallery",
-    icon: <Gallery className="h-5 w-5" />,
+    icon: <Image className="h-5 w-5" />,
   },
   {
     title: "Space",
     href: "/space",
-    icon: <Space className="h-5 w-5" />,
+    icon: <Globe className="h-5 w-5" />,
   },
   {
     title: "Account",
