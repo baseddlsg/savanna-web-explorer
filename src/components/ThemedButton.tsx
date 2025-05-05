@@ -9,8 +9,8 @@ import { Loader2 } from "lucide-react";
  * 
  * @component
  * @param {object} props
- * @param {'primary' | 'secondary' | 'danger' | 'outline' | 'ghost' | 'link'} [props.variant='primary']
- * @param {'sm' | 'md' | 'lg' | 'icon'} [props.size='md']
+ * @param {'primary' | 'secondary' | 'danger' | 'outline' | 'ghost' | 'link'} [props.variant='primary'] - Button variant
+ * @param {'sm' | 'md' | 'lg' | 'icon'} [props.size='md'] - Button size
  * @param {boolean} [props.loading=false] - If true, shows a loading spinner
  * @param {boolean} [props.fullWidth=false] - If true, button takes full width of container
  * @param {string} [props.loadingText] - Text to display while loading
